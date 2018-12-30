@@ -1,11 +1,11 @@
 var express = require('express')
 var app = express()
 
-app.set('port', (process.env.PORT || 80))
+app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
 app.get('/', function(request, response) {
-  response.send('It\'s a React State of Mind!')
+  response.send('A React State of Mind!')
 })
 
 app.listen(app.get('port'), function() {
