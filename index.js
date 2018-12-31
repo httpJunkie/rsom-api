@@ -2,10 +2,11 @@ var express = require('express')
 var app = express()
 
 app.set('port', (process.env.PORT || 80))
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '../rsom-client/dist'))
 
-app.get('/', function(request, response) {
-  response.send('A React State of Mind! by @httpJunkie')
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../rsom-client/dist/index.html'));
 })
 
 app.listen(app.get('port'), function() {
