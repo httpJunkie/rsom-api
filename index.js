@@ -1,14 +1,16 @@
-var express = require('express')
-var app = express()
+const express = require('express')
+const bodyParser = require('body-parser')
+const path = require('path');
+const app = express()
 
-app.set('port', (process.env.PORT || 80))
-app.use(express.static(__dirname + '../rsom-client/dist'))
 
-const path = require('path')
-app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, '../rsom-client/dist/index.html'));
-})
+app.use(express.static(path.join(__dirname,'../rsom-client/dist')))
 
-app.listen(app.get('port'), function() {
-  console.log("Node app is running locally at:" + app.get('port'))
-})
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '../rsom-client/dist', 'index.html'));
+});
+
+
+app.listen(process.env.PORT || 8080), function() {
+  console.log("Node app is running")
+};
